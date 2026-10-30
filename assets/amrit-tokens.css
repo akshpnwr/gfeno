@@ -1,0 +1,24 @@
+/* Amrit Herbals design tokens. Generated from design-system/tokens.json. Edit tokens.json, then regenerate; do not hand-edit values here.
+   Every token is prefixed --ah- to avoid clashing with Dawn's own CSS variables (design-system name `brand` = `--ah-brand`). */
+:root {
+  --ah-surface-100: #FFFFFF;
+  --ah-surface-200: #F2F7EE;
+  --ah-ink: #111511;
+  --ah-ink-muted: #4F5A52;
+  --ah-brand: #1F7A38;
+  --ah-leaf: #2E9E4A;
+  --ah-leaf-tint: #DDF2DF;
+  --ah-accent: #D7F25C;
+  --ah-offer: #FF6B3D;
+  --ah-offer-strong: #C2410C;
+  --ah-border: #E1E8DC;
+  --ah-danger: #C62828;
+  --ah-font-sans: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --ah-space-2: 8px;
+  --ah-space-4: 16px;
+  --ah-space-6: 24px;
+  --ah-space-12: 48px;
+  --ah-radius-sm: 8px;
+  --ah-radius-md: 20px;
+  --ah-radius-pill: 999px;
+}
