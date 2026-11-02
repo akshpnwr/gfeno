@@ -50,4 +50,46 @@
       </figure>
     </div>
   </section>
+
+  <!-- Home page variant, as built (sections/ah-testimonials.liquid). The band colour comes from the section's colour scheme (scheme 2).
+       Stars: an outline row with a filled row clipped to the rating (snippets/ah-rating-stars.liquid); the script below fills both rows. -->
+  <section class="ah-section ah-section--band ah-reviews" style="background: var(--surface-200);">
+    <div class="ah-container">
+      <div class="ah-section-head">
+        <div><h2 class="ah-heading ah-heading--section">What customers say</h2></div>
+      </div>
+      <ul class="ah-reviews__list" role="list">
+        <li class="ah-reviews__item">
+          <figure class="ah-quote ah-reviews__quote">
+            <div class="ah-reviews__stars"><span class="ah-stars" data-rating="5" role="img" aria-label="5 out of 5 stars" style="--ah-star-size: 18px;"></span></div>
+            <blockquote class="ah-quote__text ah-reviews__text"><p>The neem handwash smells fresh and my hands don’t feel dry, even after washing many times a day.</p></blockquote>
+            <figcaption class="ah-quote__meta">Priya S., Pune · Neem &amp; Tulsi Handwash</figcaption>
+          </figure>
+        </li>
+        <li class="ah-reviews__item">
+          <figure class="ah-quote ah-reviews__quote">
+            <div class="ah-reviews__stars"><span class="ah-stars" data-rating="4.5" role="img" aria-label="4.5 out of 5 stars" style="--ah-star-size: 18px;"></span></div>
+            <blockquote class="ah-quote__text ah-reviews__text"><p>The lemon dishwash gets oil off the kadai easily. One bottle lasts our family about a month.</p></blockquote>
+            <figcaption class="ah-quote__meta">Rahul M., Jaipur · Lemon &amp; Reetha Dishwash</figcaption>
+          </figure>
+        </li>
+        <li class="ah-reviews__item">
+          <figure class="ah-quote ah-reviews__quote">
+            <div class="ah-reviews__stars"><span class="ah-stars" data-rating="5" role="img" aria-label="5 out of 5 stars" style="--ah-star-size: 18px;"></span></div>
+            <blockquote class="ah-quote__text ah-reviews__text"><p>The refill pack fits my old bottle perfectly. Less plastic, and it costs less too.</p></blockquote>
+            <figcaption class="ah-quote__meta">Ananya K., Bengaluru · Aloe Vera Handwash Refill</figcaption>
+          </figure>
+        </li>
+      </ul>
+    </div>
+  </section>
 </div>
+<script>
+  // Builds the two star rows the theme's snippet renders server-side.
+  const star = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>';
+  document.querySelectorAll('.ah-stars[data-rating]').forEach((el) => {
+    const pct = Math.min(100, Math.max(0, (Number(el.dataset.rating) / 5) * 100));
+    el.innerHTML = `<span class="ah-stars__row ah-stars__row--empty">${star.repeat(5)}</span>` +
+      `<span class="ah-stars__row ah-stars__row--fill" style="width: ${pct}%;">${star.repeat(5)}</span>`;
+  });
+</script>

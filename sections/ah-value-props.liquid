@@ -22,7 +22,7 @@
     display: grid;
     grid-template-columns: auto 1fr;
     align-items: center;
-    gap: var(--ah-space-2) calc(var(--ah-space-2) * 1.5);
+    gap: var(--ah-space-2) var(--ah-space-3);
     padding: var(--ah-space-4);
     border: 1px solid var(--ah-border);
     border-radius: var(--ah-radius-md);
@@ -34,7 +34,7 @@
 
   @media (min-width: 750px) {
     .ah-value-props__list { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--ah-space-6); }
-    .ah-value-props__item { display: flex; flex-direction: column; align-items: flex-start; gap: calc(var(--ah-space-2) * 1.5); padding: var(--ah-space-6); }
+    .ah-value-props__item { display: flex; flex-direction: column; align-items: flex-start; gap: var(--ah-space-3); padding: var(--ah-space-6); }
     .ah-value-props__title { font-size: 20px; line-height: 28px; }
   }
 {% endstylesheet %}

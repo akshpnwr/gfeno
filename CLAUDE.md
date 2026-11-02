@@ -45,6 +45,7 @@ Never run `shopify theme push --live` or publish a theme unless explicitly asked
 
 - Use the design tokens only: `var(--ah-brand)`, `var(--ah-space-4)`, `var(--ah-radius-md)`, etc. No raw hex values, no new colours, no new fonts.
 - Token names in `design-system/` are unprefixed (`brand`, `space-4`); in the theme they are `--ah-brand`, `--ah-space-4`.
+- Type styles are shorthand variables: `font: var(--ah-text-heading-1); letter-spacing: var(--ah-tracking-heading-1);`. Spacing steps are 2, 3, 4, 6, 8, 12 (8–48px); use `calc()` only for larger multiples (64px, 96px).
 - Reuse classes from `assets/amrit-components.css` (`ah-btn`, `ah-heading`, `ah-tag`, ...). New component CSS goes in that file or in a section's `{% stylesheet %}` tag, prefixed `ah-`.
 - Breakpoint: 750px (matches Dawn). Mobile first.
 - Font: Plus Jakarta Sans only, loaded once in `layout/theme.liquid`. Also set Dawn's heading and body fonts to Plus Jakarta Sans in Theme settings > Typography.
@@ -55,6 +56,8 @@ Never run `shopify theme push --live` or publish a theme unless explicitly asked
 
 - Every section has a full `{% schema %}`: merchant-editable settings for all copy, images, links and toggles; blocks for repeatable items (reviews, tags, cards); `presets` so it can be added in the theme editor.
 - Wrap section markup in a root element with class `ah-root` plus the section class.
+- Section `{% stylesheet %}` CSS loads before `assets/amrit-components.css`, so a section rule that overrides a component class needs an extra class in the selector (`.ah-hero .ah-hero__heading`, not `.ah-hero__heading`).
+- Colour scheme settings: add `ah-scheme color-{{ section.settings.color_scheme }}`; the background follows the scheme, text stays `--ah-ink`. Schemes 1–4 only; scheme 5 (brand background, white text) is not supported by `ah-` sections.
 - No hard-coded copy in markup; all text comes from settings or locale strings.
 - Images: `image_url` with `widths` + `image_tag` (responsive `srcset`), `loading: 'lazy'` below the fold, always an alt text setting.
 - JS: none unless needed. If needed, vanilla JS (custom element, like Dawn), in `assets/ah-<name>.js`, loaded with `defer`. No jQuery, no frameworks.

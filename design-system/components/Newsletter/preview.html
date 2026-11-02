@@ -1,0 +1,24 @@
+<!-- @dsCard group="Sections" height=340 width=1100 subtitle="Centred email sign-up with a visible label, plus success and error states" -->
+<div class="ah-root">
+  <section class="ah-section ah-section--end ah-newsletter" aria-labelledby="nl-heading">
+    <div class="ah-container ah-newsletter__inner">
+      <h2 class="ah-heading ah-heading--section" id="nl-heading">Get 10% off your first order</h2>
+      <p class="ah-body">Join the list for new launches and refill offers. No spam.</p>
+      <form class="ah-newsletter__form" onsubmit="return false;">
+        <div class="ah-newsletter__field">
+          <label class="ah-newsletter__label" for="nl-email">Email address</label>
+          <input id="nl-email" class="ah-newsletter__input" type="email" autocomplete="email" placeholder="you@example.com" required>
+        </div>
+        <button type="submit" class="ah-btn ah-btn--primary">Subscribe</button>
+      </form>
+      <form class="ah-newsletter__form" onsubmit="return false;">
+        <div class="ah-newsletter__field">
+          <label class="ah-newsletter__label" for="nl-email-error">Email address</label>
+          <input id="nl-email-error" class="ah-newsletter__input" type="email" value="you@example" aria-invalid="true" aria-describedby="nl-error">
+        </div>
+        <button type="submit" class="ah-btn ah-btn--primary">Subscribe</button>
+        <p class="ah-newsletter__message ah-newsletter__message--error" id="nl-error" role="alert">Email is invalid</p>
+      </form>
+    </div>
+  </section>
+</div>

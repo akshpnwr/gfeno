@@ -192,7 +192,7 @@
 /* Section head: heading left, text link right (wraps below on mobile) */
 .ah-section-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--ah-space-2) var(--ah-space-4); margin-bottom: var(--ah-space-6); }
 @media (min-width: 750px) {
-  .ah-section-head { margin-bottom: calc(var(--ah-space-4) * 2); }
+  .ah-section-head { margin-bottom: var(--ah-space-8); }
 }
 
 /* Star rating: outline row with a filled row clipped to the rating */

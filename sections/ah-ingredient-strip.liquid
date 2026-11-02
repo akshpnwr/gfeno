@@ -25,11 +25,11 @@
 
 {% stylesheet %}
   .ah-ingredient-strip { padding-top: var(--ah-space-6); }
-  .ah-ingredient-strip__inner { display: flex; flex-direction: column; gap: calc(var(--ah-space-2) * 1.5); }
+  .ah-ingredient-strip__inner { display: flex; flex-direction: column; gap: var(--ah-space-3); }
   .ah-ingredient-strip__label { margin: 0; font: 700 12px/16px var(--ah-font-sans); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ah-ink-muted); }
   .ah-ingredient-strip__list {
     display: flex;
-    gap: calc(var(--ah-space-2) * 1.5);
+    gap: var(--ah-space-3);
     margin: 0 calc(var(--ah-space-4) * -1);
     padding: 0 var(--ah-space-4) var(--ah-space-2);
     list-style: none;
@@ -55,7 +55,7 @@
   a.ah-ingredient-strip__chip:hover { text-decoration: underline; text-underline-offset: 3px; }
 
   @media (min-width: 750px) {
-    .ah-ingredient-strip { padding-top: calc(var(--ah-space-4) * 2); }
+    .ah-ingredient-strip { padding-top: var(--ah-space-8); }
     .ah-ingredient-strip__inner { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: center; }
     .ah-ingredient-strip__label { margin-right: var(--ah-space-2); }
     .ah-ingredient-strip__list { flex-wrap: wrap; justify-content: center; margin: 0; padding: 0; overflow: visible; }
