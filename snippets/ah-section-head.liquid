@@ -1,0 +1,21 @@
+{%- comment -%}
+  Section heading on the left, optional text link on the right.
+  @param {string} heading
+  @param {string} [eyebrow]
+  @param {string} [link_label]
+  @param {string} [link_url]
+  @param {string} [heading_id] - id for aria-labelledby on the section
+{%- endcomment -%}
+{%- if heading != blank or link_label != blank -%}
+  <div class="ah-section-head">
+    <div>
+      {%- if eyebrow != blank -%}<p class="ah-eyebrow">{{ eyebrow | escape }}</p>{%- endif -%}
+      {%- if heading != blank -%}
+        <h2 class="ah-heading ah-heading--section"{% if heading_id %} id="{{ heading_id }}"{% endif %}>{{ heading | escape }}</h2>
+      {%- endif -%}
+    </div>
+    {%- if link_label != blank and link_url != blank -%}
+      <a class="ah-link" href="{{ link_url }}">{{ link_label | escape }}</a>
+    {%- endif -%}
+  </div>
+{%- endif -%}

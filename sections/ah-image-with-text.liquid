@@ -1,0 +1,236 @@
+{%- liquid
+  assign tags = section.settings.tags | split: ','
+-%}
+<section class="ah-root ah-section ah-section--band ah-scheme color-{{ section.settings.color_scheme }} ah-iwt"{% if section.settings.heading != blank %} aria-labelledby="ah-iwt-heading-{{ section.id }}"{% endif %}>
+  <div class="ah-container">
+    <div class="ah-image-text ah-iwt__grid{% if section.settings.image_on_right %} ah-image-text--reverse{% endif %}">
+      <div class="ah-media ah-iwt__media ah-iwt__media--{{ section.settings.image_ratio }}">
+        {%- render 'ah-image',
+          image: section.settings.image,
+          alt: section.settings.image_alt,
+          sizes: '(min-width: 1280px) 560px, (min-width: 750px) 45vw, calc(100vw - 32px)',
+          placeholder: 'lifestyle-2'
+        -%}
+      </div>
+      <div class="ah-iwt__content">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="ah-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="ah-heading ah-heading--section" id="ah-iwt-heading-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+          <p class="ah-body">{{ section.settings.text | escape }}</p>
+        {%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+          <ul class="ah-iwt__cards" role="list">
+            {%- for block in section.blocks -%}
+              <li class="ah-iwt__card" {{ block.shopify_attributes }}>
+                <span class="ah-iwt__card-title">{{ block.settings.title | escape }}</span>
+                {%- if block.settings.text != blank -%}
+                  <span class="ah-iwt__card-text">{{ block.settings.text | escape }}</span>
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        {%- if section.settings.tags != blank -%}
+          <ul class="ah-image-text__tags" role="list">
+            {%- for tag in tags limit: 4 -%}
+              {%- assign tag_text = tag | strip -%}
+              {%- if tag_text != blank -%}<li class="ah-tag">{{ tag_text | escape }}</li>{%- endif -%}
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        {%- if section.settings.button_label_1 != blank or section.settings.button_label_2 != blank -%}
+          <div class="ah-image-text__actions">
+            {%- if section.settings.button_label_1 != blank -%}
+              <a class="ah-btn ah-btn--{{ section.settings.button_style_1 }}" href="{{ section.settings.button_link_1 | default: routes.all_products_collection_url }}">{{ section.settings.button_label_1 | escape }}</a>
+            {%- endif -%}
+            {%- if section.settings.button_label_2 != blank -%}
+              <a class="ah-btn ah-btn--{{ section.settings.button_style_2 }}" href="{{ section.settings.button_link_2 | default: routes.all_products_collection_url }}">{{ section.settings.button_label_2 | escape }}</a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .ah-iwt .ah-image-text { padding: 0; gap: calc(var(--ah-space-4) * 2); }
+  .ah-iwt .ah-iwt__media { background: var(--ah-surface-100); }
+  .ah-iwt .ah-iwt__media--landscape { aspect-ratio: 5 / 4; }
+  .ah-iwt .ah-iwt__media--portrait { aspect-ratio: 4 / 5; }
+  .ah-iwt .ah-iwt__content { display: flex; flex-direction: column; gap: var(--ah-space-4); min-width: 0; }
+  .ah-iwt .ah-iwt__content > * { margin: 0; }
+  .ah-iwt__cards { display: grid; grid-template-columns: 1fr; gap: calc(var(--ah-space-2) * 1.5); padding: 0; list-style: none; }
+  .ah-iwt__card { display: flex; flex-direction: column; gap: 4px; padding: var(--ah-space-4); border-radius: var(--ah-radius-md); background: var(--ah-surface-100); }
+  .ah-iwt__card-title { font: 700 16px/24px var(--ah-font-sans); color: var(--ah-ink); }
+  .ah-iwt__card-text { font: 500 14px/20px var(--ah-font-sans); color: var(--ah-ink-muted); }
+  .ah-iwt .ah-image-text__actions .ah-btn { width: 100%; }
+
+  @media (min-width: 750px) {
+    .ah-iwt .ah-image-text { gap: var(--ah-space-12); }
+    .ah-iwt .ah-iwt__content { gap: var(--ah-space-6); }
+    .ah-iwt__cards { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--ah-space-4); }
+    .ah-iwt__card { padding: var(--ah-space-6); }
+    .ah-iwt .ah-image-text__actions .ah-btn { width: auto; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "AH Image with text",
+  "tag": "div",
+  "class": "ah-section-image-with-text",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Colour scheme",
+      "default": "scheme-2"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "At least 1250 × 1000 px (landscape) or 1000 × 1250 px (portrait). Real ingredients in natural light."
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text",
+      "info": "Leave blank to use the alt text saved with the image."
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image shape",
+      "default": "landscape",
+      "options": [
+        { "value": "landscape", "label": "Landscape (5:4)" },
+        { "value": "portrait", "label": "Portrait (4:5)" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "image_on_right",
+      "label": "Image on right",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Know what you are using"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Every ingredient is named on the bottle."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "We lead with plants you already know. Here is what each one is there for."
+    },
+    {
+      "type": "text",
+      "id": "tags",
+      "label": "Ingredient tags",
+      "info": "Optional. Comma-separated, up to 4."
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "button_label_1",
+      "label": "First button label",
+      "default": "See all ingredients"
+    },
+    {
+      "type": "url",
+      "id": "button_link_1",
+      "label": "First button link"
+    },
+    {
+      "type": "select",
+      "id": "button_style_1",
+      "label": "First button style",
+      "default": "outline",
+      "options": [
+        { "value": "primary", "label": "Primary" },
+        { "value": "outline", "label": "Outline" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "button_label_2",
+      "label": "Second button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link_2",
+      "label": "Second button link"
+    },
+    {
+      "type": "select",
+      "id": "button_style_2",
+      "label": "Second button style",
+      "default": "outline",
+      "options": [
+        { "value": "primary", "label": "Primary" },
+        { "value": "outline", "label": "Outline" }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Ingredient card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Neem"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "A familiar herb in Indian homes, added for its clean, herbal freshness."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "AH Image with text",
+      "blocks": [
+        { "type": "card", "settings": { "title": "Neem", "text": "A familiar herb in Indian homes, added for its clean, herbal freshness." } },
+        { "type": "card", "settings": { "title": "Aloe vera", "text": "Added to our handwash so hands feel soft after every wash." } },
+        { "type": "card", "settings": { "title": "Reetha", "text": "Soapnut, a plant cleanser that lathers on its own." } },
+        { "type": "card", "settings": { "title": "Lemon and lemongrass", "text": "Lemon helps lift grease off dishes. Lemongrass leaves floors smelling fresh." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

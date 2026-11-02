@@ -46,7 +46,8 @@
         "mobile_content_alignment": "center",
         "stack_images_on_mobile": false,
         "show_text_below": false
-      }
+      },
+      "disabled": true
     },
     "featured_collection": {
       "type": "featured-collection",
@@ -74,10 +75,322 @@
         "columns_mobile": "2",
         "padding_top": 44,
         "padding_bottom": 36
+      },
+      "disabled": true
+    },
+    "ah_hero": {
+      "type": "ah-hero",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "show_leaf": true,
+        "tag": "Made with natural ingredients",
+        "heading": "Plant-powered clean for every corner of your home.",
+        "text": "Handwash, dishwash and floor cleaners made with neem, tulsi, aloe vera and citrus. Every ingredient is on the label.",
+        "image_alt": "",
+        "button_label_1": "Shop handwash",
+        "button_link_1": "shopify://collections/handwash",
+        "button_label_2": "Shop all products",
+        "button_link_2": "shopify://collections/all"
+      }
+    },
+    "ah_ingredient_strip": {
+      "type": "ah-ingredient-strip",
+      "settings": {
+        "label": "What goes in"
+      },
+      "blocks": {
+        "ingredient_1": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Neem",
+            "icon": "leaf",
+            "link": ""
+          }
+        },
+        "ingredient_2": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Tulsi",
+            "icon": "leaf",
+            "link": ""
+          }
+        },
+        "ingredient_3": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Aloe vera",
+            "icon": "leaf",
+            "link": ""
+          }
+        },
+        "ingredient_4": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Reetha",
+            "icon": "drop",
+            "link": ""
+          }
+        },
+        "ingredient_5": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Lemon",
+            "icon": "citrus",
+            "link": ""
+          }
+        },
+        "ingredient_6": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Lemongrass",
+            "icon": "leaf",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_1",
+        "ingredient_2",
+        "ingredient_3",
+        "ingredient_4",
+        "ingredient_5",
+        "ingredient_6"
+      ]
+    },
+    "ah_category_grid": {
+      "type": "ah-category-grid",
+      "settings": {
+        "heading": "Shop by category",
+        "link_label": "View all products",
+        "link_url": "shopify://collections/all"
+      },
+      "blocks": {
+        "category_1": {
+          "type": "category",
+          "settings": {
+            "collection": "handwash",
+            "label": "Handwash",
+            "image_alt": ""
+          }
+        },
+        "category_2": {
+          "type": "category",
+          "settings": {
+            "collection": "dishwash",
+            "label": "Dishwash",
+            "image_alt": ""
+          }
+        },
+        "category_3": {
+          "type": "category",
+          "settings": {
+            "collection": "floor-cleaner",
+            "label": "Floor cleaner",
+            "image_alt": ""
+          }
+        },
+        "category_4": {
+          "type": "category",
+          "settings": {
+            "collection": "refills",
+            "label": "Refills",
+            "image_alt": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_1",
+        "category_2",
+        "category_3",
+        "category_4"
+      ]
+    },
+    "ah_featured_products": {
+      "type": "ah-featured-products",
+      "settings": {
+        "heading": "Bestsellers",
+        "link_label": "Shop bestsellers",
+        "link_url": "shopify://collections/bestsellers",
+        "collection": "bestsellers",
+        "products_to_show": 4,
+        "show_rating": true,
+        "show_add_to_cart": true,
+        "sale_label": "[percent]% off",
+        "new_label": "New",
+        "bestseller_label": "Bestseller",
+        "bestseller_collection": "bestsellers"
+      }
+    },
+    "ah_image_with_text": {
+      "type": "ah-image-with-text",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "image_ratio": "landscape",
+        "image_on_right": false,
+        "image_alt": "",
+        "eyebrow": "Know what you are using",
+        "heading": "Every ingredient is named on the bottle.",
+        "text": "We lead with plants you already know. Here is what each one is there for.",
+        "tags": "",
+        "button_label_1": "See all ingredients",
+        "button_link_1": "",
+        "button_style_1": "outline",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_style_2": "outline"
+      },
+      "blocks": {
+        "card_1": {
+          "type": "card",
+          "settings": {
+            "title": "Neem",
+            "text": "A familiar herb in Indian homes, added for its clean, herbal freshness."
+          }
+        },
+        "card_2": {
+          "type": "card",
+          "settings": {
+            "title": "Aloe vera",
+            "text": "Added to our handwash so hands feel soft after every wash."
+          }
+        },
+        "card_3": {
+          "type": "card",
+          "settings": {
+            "title": "Reetha",
+            "text": "Soapnut, a plant cleanser that lathers on its own."
+          }
+        },
+        "card_4": {
+          "type": "card",
+          "settings": {
+            "title": "Lemon and lemongrass",
+            "text": "Lemon helps lift grease off dishes. Lemongrass leaves floors smelling fresh."
+          }
+        }
+      },
+      "block_order": [
+        "card_1",
+        "card_2",
+        "card_3",
+        "card_4"
+      ]
+    },
+    "ah_value_props": {
+      "type": "ah-value-props",
+      "settings": {
+        "label": "Why Amrit Herbals"
+      },
+      "blocks": {
+        "item_1": {
+          "type": "item",
+          "settings": {
+            "icon": "leaf",
+            "title": "Made with natural ingredients",
+            "text": "Neem, tulsi, aloe vera, reetha and citrus, listed on every label."
+          }
+        },
+        "item_2": {
+          "type": "item",
+          "settings": {
+            "icon": "refresh",
+            "title": "Refill and reuse",
+            "text": "Refill packs for your bottles, so you buy less plastic."
+          }
+        },
+        "item_3": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "title": "Delivered across India",
+            "text": "Free shipping above ₹499. Delivered in 3–5 days to most pin codes."
+          }
+        }
+      },
+      "block_order": [
+        "item_1",
+        "item_2",
+        "item_3"
+      ]
+    },
+    "ah_cta_banner": {
+      "type": "ah-cta-banner",
+      "settings": {
+        "style": "accent",
+        "show_leaf": false,
+        "eyebrow": "Refill offer",
+        "heading": "15% off your first refill pack.",
+        "text": "Use code REFILL15 at checkout. Valid till 30 November 2026.",
+        "button_label": "Shop refills",
+        "button_link": "shopify://collections/refills"
+      }
+    },
+    "ah_testimonials": {
+      "type": "ah-testimonials",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "eyebrow": "",
+        "heading": "What customers say"
+      },
+      "blocks": {
+        "review_1": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "The neem handwash smells fresh and my hands don’t feel dry, even after washing many times a day.",
+            "name": "Priya S.",
+            "location": "Pune",
+            "product": "Neem & Tulsi Handwash"
+          }
+        },
+        "review_2": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "The lemon dishwash gets oil off the kadai easily. One bottle lasts our family about a month.",
+            "name": "Rahul M.",
+            "location": "Jaipur",
+            "product": "Lemon & Reetha Dishwash"
+          }
+        },
+        "review_3": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "The refill pack fits my old bottle perfectly. Less plastic, and it costs less too.",
+            "name": "Ananya K.",
+            "location": "Bengaluru",
+            "product": "Aloe Vera Handwash Refill"
+          }
+        }
+      },
+      "block_order": [
+        "review_1",
+        "review_2",
+        "review_3"
+      ]
+    },
+    "ah_newsletter": {
+      "type": "ah-newsletter",
+      "settings": {
+        "heading": "Get 10% off your first order",
+        "text": "Join the list for new launches and refill offers. No spam.",
+        "label": "Email address",
+        "placeholder": "you@example.com",
+        "button_label": "Subscribe"
       }
     }
   },
   "order": [
+    "ah_hero",
+    "ah_ingredient_strip",
+    "ah_category_grid",
+    "ah_featured_products",
+    "ah_image_with_text",
+    "ah_value_props",
+    "ah_cta_banner",
+    "ah_testimonials",
+    "ah_newsletter",
     "image_banner",
     "featured_collection"
   ]

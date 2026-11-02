@@ -1,0 +1,125 @@
+<section class="ah-root ah-ingredient-strip"{% if section.settings.label != blank %} aria-label="{{ section.settings.label | escape }}"{% endif %}>
+  <div class="ah-container ah-ingredient-strip__inner">
+    {%- if section.settings.label != blank -%}
+      <p class="ah-ingredient-strip__label">{{ section.settings.label | escape }}</p>
+    {%- endif -%}
+    <ul class="ah-ingredient-strip__list" role="list">
+      {%- for block in section.blocks -%}
+        <li {{ block.shopify_attributes }}>
+          {%- if block.settings.link != blank -%}
+            <a class="ah-ingredient-strip__chip" href="{{ block.settings.link }}">
+              {%- render 'ah-icon', icon: block.settings.icon -%}
+              {{- block.settings.name | escape -}}
+            </a>
+          {%- else -%}
+            <span class="ah-ingredient-strip__chip">
+              {%- render 'ah-icon', icon: block.settings.icon -%}
+              {{- block.settings.name | escape -}}
+            </span>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% stylesheet %}
+  .ah-ingredient-strip { padding-top: var(--ah-space-6); }
+  .ah-ingredient-strip__inner { display: flex; flex-direction: column; gap: calc(var(--ah-space-2) * 1.5); }
+  .ah-ingredient-strip__label { margin: 0; font: 700 12px/16px var(--ah-font-sans); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ah-ink-muted); }
+  .ah-ingredient-strip__list {
+    display: flex;
+    gap: calc(var(--ah-space-2) * 1.5);
+    margin: 0 calc(var(--ah-space-4) * -1);
+    padding: 0 var(--ah-space-4) var(--ah-space-2);
+    list-style: none;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+  .ah-ingredient-strip__list::-webkit-scrollbar { display: none; }
+  .ah-ingredient-strip__list li { flex: none; scroll-snap-align: start; }
+  .ah-ingredient-strip__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ah-space-2);
+    padding: var(--ah-space-2) var(--ah-space-4);
+    border-radius: var(--ah-radius-pill);
+    background: var(--ah-leaf-tint);
+    color: var(--ah-ink);
+    font: 700 14px/20px var(--ah-font-sans);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .ah-ingredient-strip__chip svg { width: 16px; height: 16px; color: var(--ah-brand); }
+  a.ah-ingredient-strip__chip:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+  @media (min-width: 750px) {
+    .ah-ingredient-strip { padding-top: calc(var(--ah-space-4) * 2); }
+    .ah-ingredient-strip__inner { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: center; }
+    .ah-ingredient-strip__label { margin-right: var(--ah-space-2); }
+    .ah-ingredient-strip__list { flex-wrap: wrap; justify-content: center; margin: 0; padding: 0; overflow: visible; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "AH Ingredient strip",
+  "tag": "div",
+  "class": "ah-section-ingredient-strip",
+  "max_blocks": 10,
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "What goes in"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingredient",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Neem"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "default": "leaf",
+          "options": [
+            { "value": "leaf", "label": "Leaf" },
+            { "value": "drop", "label": "Drop" },
+            { "value": "citrus", "label": "Citrus" },
+            { "value": "none", "label": "None" }
+          ]
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link",
+          "info": "Optional, e.g. to the ingredients page."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "AH Ingredient strip",
+      "blocks": [
+        { "type": "ingredient", "settings": { "name": "Neem", "icon": "leaf" } },
+        { "type": "ingredient", "settings": { "name": "Tulsi", "icon": "leaf" } },
+        { "type": "ingredient", "settings": { "name": "Aloe vera", "icon": "leaf" } },
+        { "type": "ingredient", "settings": { "name": "Reetha", "icon": "drop" } },
+        { "type": "ingredient", "settings": { "name": "Lemon", "icon": "citrus" } },
+        { "type": "ingredient", "settings": { "name": "Lemongrass", "icon": "leaf" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

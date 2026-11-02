@@ -1,0 +1,113 @@
+{%- comment -%}
+  Product card: image, badge, title, hero ingredients, rating, price, add to cart.
+  - Ingredients: product metafield custom.hero_ingredients (single line text). Hidden if empty.
+  - Rating: product metafields reviews.rating / reviews.rating_count (written by a reviews app). Hidden if empty.
+  - Badge priority: sale % (from compare-at price) > tag "new" > member of the bestseller collection.
+  - Add to cart for single-variant products; link to the product page for products with options.
+  Requires product-form.js on the page when show_add_to_cart is true.
+
+  @param {object} product
+  @param {string} section_id - namespaces form and title ids
+  @param {boolean} [show_rating]
+  @param {boolean} [show_add_to_cart]
+  @param {string} [bestseller_handle] - collection handle that earns the bestseller badge
+  @param {string} [sale_label] - e.g. "[percent]% off"
+  @param {string} [new_label]
+  @param {string} [bestseller_label]
+  @param {string} [sizes] - image sizes attribute
+{%- endcomment -%}
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  assign title_id = 'ah-card-title-' | append: section_id | append: '-' | append: product.id
+  assign form_id = 'ah-card-form-' | append: section_id | append: '-' | append: product.id
+
+  assign badge = ''
+  assign badge_class = ''
+  if variant.compare_at_price > variant.price and sale_label != blank
+    assign percent = variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round
+    assign badge = sale_label | replace: '[percent]', percent
+    assign badge_class = 'ah-card__badge--offer'
+  else
+    assign tags_lower = product.tags | join: '|' | downcase | split: '|'
+    if tags_lower contains 'new' and new_label != blank
+      assign badge = new_label
+    elsif bestseller_handle != blank and bestseller_label != blank
+      assign collection_handles = product.collections | map: 'handle'
+      if collection_handles contains bestseller_handle
+        assign badge = bestseller_label
+      endif
+    endif
+  endif
+
+  assign ingredients = product.metafields.custom.hero_ingredients.value
+  assign rating = product.metafields.reviews.rating.value
+  assign rating_count = product.metafields.reviews.rating_count.value
+  assign image_alt = product.featured_media.alt | default: product.title
+-%}
+<article class="ah-card">
+  <div class="ah-card__media">
+    <a href="{{ product.url }}" tabindex="-1" aria-hidden="true">
+      {%- render 'ah-image',
+        image: product.featured_media.preview_image,
+        alt: image_alt,
+        sizes: sizes,
+        widths: '165, 330, 535, 750',
+        placeholder: 'product-1'
+      -%}
+    </a>
+    {%- if badge != blank -%}
+      <span class="ah-card__badge {{ badge_class }}">{{ badge | escape }}</span>
+    {%- endif -%}
+  </div>
+  <div class="ah-card__body">
+    <h3 class="ah-card__title" id="{{ title_id }}">
+      <a href="{{ product.url }}">{{ product.title | escape }}</a>
+    </h3>
+    {%- if ingredients != blank -%}
+      <p class="ah-card__meta">{{ ingredients | escape }}</p>
+    {%- endif -%}
+    {%- if show_rating and rating != blank -%}
+      <div class="ah-card__rating">
+        {%- render 'ah-rating-stars', rating: rating.rating, max: rating.scale_max, size: '14px' -%}
+        <span aria-hidden="true">{{ rating.rating | round: 1 }}</span>
+        {%- if rating_count != blank -%}
+          <span>({{ rating_count }}<span class="visually-hidden"> {{ 'accessibility.total_reviews' | t }}</span>)</span>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+    {%- render 'ah-price', product: product -%}
+    {%- if show_add_to_cart -%}
+      <div class="ah-card__actions">
+        {%- if product.available == false -%}
+          <button type="button" class="ah-btn ah-btn--primary ah-btn--full" disabled>
+            {{- 'products.product.sold_out' | t -}}
+          </button>
+        {%- elsif product.has_only_default_variant -%}
+          <product-form data-section-id="{{ section_id }}">
+            {%- form 'product', product, id: form_id, novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+              <input type="hidden" name="id" value="{{ variant.id }}" class="product-variant-id">
+              <button
+                id="{{ form_id }}-submit"
+                type="submit"
+                name="add"
+                class="ah-btn ah-btn--primary ah-btn--full"
+                aria-labelledby="{{ form_id }}-submit {{ title_id }}"
+                aria-live="polite"
+              >
+                <span>{{ 'products.product.add_to_cart' | t }}</span>
+                {%- render 'loading-spinner' -%}
+              </button>
+              <p class="product-form__error-message-wrapper ah-card__error" role="alert" hidden>
+                <span class="product-form__error-message"></span>
+              </p>
+            {%- endform -%}
+          </product-form>
+        {%- else -%}
+          <a class="ah-btn ah-btn--primary ah-btn--full" href="{{ product.url }}" aria-describedby="{{ title_id }}">
+            {{- 'products.product.choose_options' | t -}}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</article>

@@ -1,0 +1,25 @@
+{%- comment -%}
+  Product price. Sale price in offer-strong with the compare-at price struck through.
+  @param {object} product
+{%- endcomment -%}
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  assign on_sale = false
+  if variant.compare_at_price > variant.price
+    assign on_sale = true
+  endif
+  assign price = variant.price | money
+  if product.price_varies
+    assign price = 'products.product.price.from_price_html' | t: price: price
+  endif
+-%}
+<p class="ah-price{% if on_sale %} ah-price--sale{% endif %}">
+  {%- if on_sale -%}
+    <span class="visually-hidden">{{ 'products.product.price.sale_price' | t }}</span>
+    <span class="ah-price__current">{{ price }}</span>
+    <span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>
+    <s class="ah-price__compare">{{ variant.compare_at_price | money }}</s>
+  {%- else -%}
+    <span class="ah-price__current">{{ price }}</span>
+  {%- endif -%}
+</p>

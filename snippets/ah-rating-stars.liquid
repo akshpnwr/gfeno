@@ -1,0 +1,24 @@
+{%- comment -%}
+  Star rating with an accessible label ("4.5 out of 5 stars").
+  @param {number} rating - rating value, 0 to max
+  @param {number} [max] - scale maximum, defaults to 5
+  @param {string} [size] - star size CSS value, defaults to 16px
+{%- endcomment -%}
+{%- liquid
+  assign max = max | default: 5
+  assign fill_percent = rating | times: 100.0 | divided_by: max
+  if fill_percent > 100
+    assign fill_percent = 100
+  elsif fill_percent < 0
+    assign fill_percent = 0
+  endif
+  assign label = 'accessibility.star_reviews_info' | t: rating_value: rating, rating_max: max
+-%}
+<span class="ah-stars" role="img" aria-label="{{ label | escape }}"{% if size %} style="--ah-star-size: {{ size }};"{% endif %}>
+  <span class="ah-stars__row ah-stars__row--empty">
+    {%- for i in (1..max) -%}{% render 'ah-icon', icon: 'star' %}{%- endfor -%}
+  </span>
+  <span class="ah-stars__row ah-stars__row--fill" style="width: {{ fill_percent }}%;">
+    {%- for i in (1..max) -%}{% render 'ah-icon', icon: 'star' %}{%- endfor -%}
+  </span>
+</span>

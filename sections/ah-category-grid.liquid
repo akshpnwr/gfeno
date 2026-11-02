@@ -1,0 +1,129 @@
+<section class="ah-root ah-section ah-category-grid"{% if section.settings.heading != blank %} aria-labelledby="ah-cat-heading-{{ section.id }}"{% endif %}>
+  <div class="ah-container">
+    {%- assign heading_id = 'ah-cat-heading-' | append: section.id -%}
+    {%- render 'ah-section-head',
+      heading: section.settings.heading,
+      heading_id: heading_id,
+      link_label: section.settings.link_label,
+      link_url: section.settings.link_url
+    -%}
+    <ul class="ah-category-grid__list" role="list">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign collection = block.settings.collection
+          assign image = block.settings.image | default: collection.featured_image
+          assign label = block.settings.label | default: collection.title
+          assign url = collection.url | default: routes.all_products_collection_url
+        -%}
+        <li {{ block.shopify_attributes }}>
+          <a class="ah-category-grid__item" href="{{ url }}">
+            <span class="ah-category-grid__media">
+              {%- render 'ah-image',
+                image: image,
+                alt: block.settings.image_alt,
+                sizes: '(min-width: 750px) 25vw, 50vw',
+                widths: '165, 330, 535, 750',
+                placeholder: 'collection-1'
+              -%}
+            </span>
+            <span class="ah-category-grid__label">
+              <span>{{ label | escape }}</span>
+              {%- render 'ah-icon', icon: 'arrow-right' -%}
+            </span>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% stylesheet %}
+  .ah-category-grid__list { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--ah-space-4); margin: 0; padding: 0; list-style: none; }
+  .ah-category-grid__item { display: flex; flex-direction: column; gap: calc(var(--ah-space-2) * 1.5); color: var(--ah-ink); text-decoration: none; }
+  .ah-category-grid__media { display: block; overflow: hidden; aspect-ratio: 1 / 1; border-radius: var(--ah-radius-md); background: var(--ah-surface-200); }
+  .ah-category-grid__media img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .3s ease; }
+  .ah-category-grid__label { display: flex; align-items: center; justify-content: space-between; gap: var(--ah-space-2); font: 700 16px/24px var(--ah-font-sans); }
+  .ah-category-grid__label svg { flex: none; width: 20px; height: 20px; transition: transform .15s ease; }
+  .ah-category-grid__item:hover .ah-category-grid__label svg { transform: translateX(4px); }
+  .ah-category-grid__item:hover .ah-category-grid__media img { transform: scale(1.03); }
+
+  @media (min-width: 750px) {
+    .ah-category-grid__list { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--ah-space-6); }
+    .ah-category-grid__item { gap: var(--ah-space-4); }
+    .ah-category-grid__label { font-size: 20px; line-height: 28px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ah-category-grid__media img, .ah-category-grid__label svg { transition: none; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "AH Category grid",
+  "tag": "div",
+  "class": "ah-section-category-grid",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop by category"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Link label",
+      "default": "View all products"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link",
+      "default": "/collections/all"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "info": "Leave blank to use the collection title."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "Square, at least 750 × 750 px. Leave blank to use the collection image."
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Image alt text",
+          "info": "Leave blank to use the alt text saved with the image."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "AH Category grid",
+      "blocks": [
+        { "type": "category", "settings": { "label": "Handwash" } },
+        { "type": "category", "settings": { "label": "Dishwash" } },
+        { "type": "category", "settings": { "label": "Floor cleaner" } },
+        { "type": "category", "settings": { "label": "Refills" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

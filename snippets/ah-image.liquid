@@ -1,0 +1,25 @@
+{%- comment -%}
+  Responsive image with srcset. Falls back to Shopify's placeholder SVG when no image is set.
+  @param {object} image - image object
+  @param {string} [alt] - alt text; falls back to the image's own alt
+  @param {string} [sizes] - sizes attribute, defaults to 100vw
+  @param {string} [widths] - srcset widths, defaults to 375, 550, 750, 1100, 1500
+  @param {boolean} [eager] - true for above-the-fold images (loads eagerly with high priority)
+  @param {string} [class] - class on the img
+  @param {string} [placeholder] - placeholder_svg_tag name, defaults to image
+{%- endcomment -%}
+{%- liquid
+  assign sizes = sizes | default: '100vw'
+  assign widths = widths | default: '375, 550, 750, 1100, 1500'
+  assign placeholder = placeholder | default: 'image'
+-%}
+{%- if image != blank -%}
+  {%- assign alt_text = alt | default: image.alt -%}
+  {%- if eager -%}
+    {{ image | image_url: width: 1500 | image_tag: widths: widths, sizes: sizes, alt: alt_text, class: class, loading: 'eager', fetchpriority: 'high' }}
+  {%- else -%}
+    {{ image | image_url: width: 1500 | image_tag: widths: widths, sizes: sizes, alt: alt_text, class: class, loading: 'lazy' }}
+  {%- endif -%}
+{%- else -%}
+  {{ placeholder | placeholder_svg_tag: 'ah-placeholder' }}
+{%- endif -%}

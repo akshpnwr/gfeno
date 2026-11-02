@@ -1,0 +1,99 @@
+<section class="ah-root ah-section ah-value-props"{% if section.settings.label != blank %} aria-label="{{ section.settings.label | escape }}"{% endif %}>
+  <div class="ah-container">
+    <ul class="ah-value-props__list" role="list">
+      {%- for block in section.blocks -%}
+        <li class="ah-value-props__item" {{ block.shopify_attributes }}>
+          {%- if block.settings.icon != 'none' -%}
+            <span class="ah-value-props__icon">{% render 'ah-icon', icon: block.settings.icon %}</span>
+          {%- endif -%}
+          <h3 class="ah-value-props__title">{{ block.settings.title | escape }}</h3>
+          {%- if block.settings.text != blank -%}
+            <p class="ah-value-props__text">{{ block.settings.text | escape }}</p>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% stylesheet %}
+  .ah-value-props__list { display: grid; grid-template-columns: 1fr; gap: var(--ah-space-4); margin: 0; padding: 0; list-style: none; }
+  .ah-value-props__item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: var(--ah-space-2) calc(var(--ah-space-2) * 1.5);
+    padding: var(--ah-space-4);
+    border: 1px solid var(--ah-border);
+    border-radius: var(--ah-radius-md);
+  }
+  .ah-value-props__icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: var(--ah-radius-pill); background: var(--ah-leaf-tint); color: var(--ah-brand); }
+  .ah-value-props__icon svg { width: 22px; height: 22px; }
+  .ah-value-props__title { margin: 0; font: 700 18px/26px var(--ah-font-sans); letter-spacing: 0; color: var(--ah-ink); }
+  .ah-value-props__text { grid-column: 1 / -1; margin: 0; font: 400 16px/24px var(--ah-font-sans); color: var(--ah-ink-muted); }
+
+  @media (min-width: 750px) {
+    .ah-value-props__list { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--ah-space-6); }
+    .ah-value-props__item { display: flex; flex-direction: column; align-items: flex-start; gap: calc(var(--ah-space-2) * 1.5); padding: var(--ah-space-6); }
+    .ah-value-props__title { font-size: 20px; line-height: 28px; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "AH Value props",
+  "tag": "div",
+  "class": "ah-section-value-props",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Section label for screen readers",
+      "default": "Why Amrit Herbals"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "default": "leaf",
+          "options": [
+            { "value": "leaf", "label": "Leaf" },
+            { "value": "drop", "label": "Drop" },
+            { "value": "refresh", "label": "Refill" },
+            { "value": "truck", "label": "Delivery" },
+            { "value": "none", "label": "None" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Made with natural ingredients"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "AH Value props",
+      "blocks": [
+        { "type": "item", "settings": { "icon": "leaf", "title": "Made with natural ingredients", "text": "Neem, tulsi, aloe vera, reetha and citrus, listed on every label." } },
+        { "type": "item", "settings": { "icon": "refresh", "title": "Refill and reuse", "text": "Refill packs for your bottles, so you buy less plastic." } },
+        { "type": "item", "settings": { "icon": "truck", "title": "Delivered across India", "text": "Free shipping above ₹499. Delivered in 3–5 days to most pin codes." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
