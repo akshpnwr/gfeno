@@ -1,4 +1,5 @@
-<section class="ah-root ah-section ah-cta"{% if section.settings.heading != blank %} aria-labelledby="ah-cta-heading-{{ section.id }}"{% endif %}>
+{%- comment -%} Before the about page build: <section class="ah-root ah-section ah-cta"{% if section.settings.heading != blank %} aria-labelledby="ah-cta-heading-{{ section.id }}"{% endif %}> {%- endcomment -%}
+<section class="ah-root ah-section{% if section.settings.is_last %} ah-section--end{% endif %} ah-cta"{% if section.settings.heading != blank %} aria-labelledby="ah-cta-heading-{{ section.id }}"{% endif %}>
   <div class="ah-container">
     <div class="ah-banner ah-cta__banner{% if section.settings.style == 'offer' %} ah-banner--offer{% endif %}">
       {%- if section.settings.show_leaf -%}
@@ -62,6 +63,13 @@
       "type": "checkbox",
       "id": "show_leaf",
       "label": "Show leaf motif",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "is_last",
+      "label": "Last section on the page",
+      "info": "Adds space between the banner and the footer.",
       "default": false
     },
     {

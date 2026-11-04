@@ -1,7 +1,8 @@
 {%- liquid
   assign tags = section.settings.tags | split: ','
 -%}
-<section class="ah-root ah-section ah-section--band ah-scheme color-{{ section.settings.color_scheme }} ah-iwt"{% if section.settings.heading != blank %} aria-labelledby="ah-iwt-heading-{{ section.id }}"{% endif %}>
+{%- comment -%} Before the about page build: <section class="ah-root ah-section ah-section--band ah-scheme color-{{ section.settings.color_scheme }} ah-iwt"{% if section.settings.heading != blank %} aria-labelledby="ah-iwt-heading-{{ section.id }}"{% endif %}> {%- endcomment -%}
+<section class="ah-root ah-section{% if section.settings.band %} ah-section--band{% else %} ah-iwt--plain{% endif %} ah-scheme color-{{ section.settings.color_scheme }} ah-iwt"{% if section.settings.heading != blank %} aria-labelledby="ah-iwt-heading-{{ section.id }}"{% endif %}>
   <div class="ah-container">
     <div class="ah-image-text ah-iwt__grid{% if section.settings.image_on_right %} ah-image-text--reverse{% endif %}">
       <div class="ah-media ah-iwt__media ah-iwt__media--{{ section.settings.image_ratio }}">
@@ -21,6 +22,12 @@
         {%- endif -%}
         {%- if section.settings.text != blank -%}
           <p class="ah-body">{{ section.settings.text | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.text_2 != blank -%}
+          <p class="ah-body">{{ section.settings.text_2 | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.byline != blank -%}
+          <p class="ah-iwt__byline">{{ section.settings.byline | escape }}</p>
         {%- endif -%}
 
         {%- if section.blocks.size > 0 -%}
@@ -63,6 +70,8 @@
 {% stylesheet %}
   .ah-iwt .ah-image-text { padding: 0; gap: var(--ah-space-8); }
   .ah-iwt .ah-iwt__media { background: var(--ah-surface-100); }
+  .ah-iwt--plain .ah-iwt__media.ah-media { background: var(--ah-surface-200); }
+  .ah-iwt__byline { font: 700 16px/24px var(--ah-font-sans); color: var(--ah-ink); }
   .ah-iwt .ah-iwt__media--landscape { aspect-ratio: 5 / 4; }
   .ah-iwt .ah-iwt__media--portrait { aspect-ratio: 4 / 5; }
   .ah-iwt .ah-iwt__content { display: flex; flex-direction: column; gap: var(--ah-space-4); min-width: 0; }
@@ -94,6 +103,13 @@
       "id": "color_scheme",
       "label": "Colour scheme",
       "default": "scheme-2"
+    },
+    {
+      "type": "checkbox",
+      "id": "band",
+      "label": "Spaced as a colour band",
+      "info": "Turn off on a white section, so it only has space above.",
+      "default": true
     },
     {
       "type": "header",
@@ -148,6 +164,18 @@
       "id": "text",
       "label": "Text",
       "default": "We lead with plants you already know. Here is what each one is there for."
+    },
+    {
+      "type": "textarea",
+      "id": "text_2",
+      "label": "Second paragraph",
+      "info": "Optional."
+    },
+    {
+      "type": "text",
+      "id": "byline",
+      "label": "Byline",
+      "info": "Optional. For example, the name of the person telling the story."
     },
     {
       "type": "text",

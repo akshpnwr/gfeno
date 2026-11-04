@@ -210,6 +210,7 @@
 .section-header .announcement-bar__message { font: 700 14px/20px var(--ah-font-sans); letter-spacing: 0; color: var(--ah-ink); min-height: 0; padding: 10px 0; }
 .section-header .header__menu-item { font: 500 16px/24px var(--ah-font-sans); color: var(--ah-ink); }
 .section-header .header__menu-item:hover span { text-decoration-color: var(--ah-brand); }
+.section-header .header__menu-item .header__active-menu-item { font-weight: 700; color: var(--ah-brand); text-decoration: underline; text-decoration-color: currentColor; text-decoration-thickness: 2px; text-underline-offset: 6px; }
 .section-header .header__icon { color: var(--ah-ink); }
 .section-header .header-wrapper--border-bottom { border-bottom: 1px solid var(--ah-border); }
 .footer .footer-block__heading { font: 700 12px/16px var(--ah-font-sans); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ah-ink); }

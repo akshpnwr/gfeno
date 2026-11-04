@@ -1,0 +1,263 @@
+{
+  "sections": {
+    "ah_hero": {
+      "type": "ah-hero",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "show_leaf": true,
+        "leaf_position": "bottom-left",
+        "tag": "Our story",
+        "heading": "Home care made with plants you already know.",
+        "text": "Neem, tulsi, aloe vera, reetha and citrus have been part of Indian homes for generations. We put them into everyday handwash, dishwash and floor cleaner, and name every ingredient on the bottle.",
+        "image_alt": "A line-up of Amrit Herbals bottles beside neem leaves and a lemon half",
+        "image_ratio": "landscape",
+        "button_label_1": "",
+        "button_label_2": ""
+      }
+    },
+    "ah_origin": {
+      "type": "ah-image-with-text",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "band": false,
+        "image_ratio": "landscape",
+        "image_on_right": false,
+        "eyebrow": "How it started",
+        "heading": "It started with reading the back of a bottle.",
+        "text": "Our founder started Amrit Herbals to make a handwash for the family where every ingredient was a plant they recognised.",
+        "text_2": "The first product was a neem and tulsi handwash, made in small batches and shared with friends and neighbours before it reached our first customers.",
+        "byline": "Founder name, founder",
+        "tags": "",
+        "button_label_1": "",
+        "button_label_2": ""
+      }
+    },
+    "ah_values": {
+      "type": "ah-value-props",
+      "settings": {
+        "label": "",
+        "heading": "What we stand for"
+      },
+      "blocks": {
+        "item_1": {
+          "type": "item",
+          "settings": {
+            "icon": "leaf",
+            "title": "Every ingredient on the label",
+            "text": "Each product leads with its hero plant and lists everything else that goes in, in plain words."
+          }
+        },
+        "item_2": {
+          "type": "item",
+          "settings": {
+            "icon": "shield-check",
+            "title": "Only claims we can back",
+            "text": "We say \"made with natural ingredients\" and show you which ones. No vague promises."
+          }
+        },
+        "item_3": {
+          "type": "item",
+          "settings": {
+            "icon": "refresh",
+            "title": "Less plastic with refills",
+            "text": "Refill packs fit the bottles you already have, so one bottle can keep going."
+          }
+        }
+      },
+      "block_order": [
+        "item_1",
+        "item_2",
+        "item_3"
+      ]
+    },
+    "ah_process": {
+      "type": "ah-process-steps",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "eyebrow": "How we make it",
+        "heading": "From plant to bottle"
+      },
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "title": "Pick the plant",
+            "text": "Each product starts with one hero ingredient: neem for hands, lemon for dishes, lemongrass for floors."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "title": "Build the formula",
+            "text": "We develop each formula around its hero ingredient, then try it at home before it goes further."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "title": "Check every batch",
+            "text": "We check each batch before it is bottled, so every bottle matches the one before it."
+          }
+        },
+        "step_4": {
+          "type": "step",
+          "settings": {
+            "title": "Fill, ship, refill",
+            "text": "Bottled, labelled and delivered across India, with refill packs for when you run out."
+          }
+        }
+      },
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3",
+        "step_4"
+      ]
+    },
+    "ah_plants": {
+      "type": "ah-ingredient-grid",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "The plants we work with",
+        "link_label": "See all ingredients",
+        "anchor_id": "ingredients"
+      },
+      "blocks": {
+        "neem": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "leaf",
+            "name": "Neem",
+            "text": "In our handwash and floor cleaner, for a clean herbal freshness."
+          }
+        },
+        "tulsi": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "leaf",
+            "name": "Tulsi",
+            "text": "Holy basil, paired with neem in our handwash."
+          }
+        },
+        "aloe_vera": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "leaf",
+            "name": "Aloe vera",
+            "text": "Added so hands feel soft after washing."
+          }
+        },
+        "reetha": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "drop",
+            "name": "Reetha",
+            "text": "Soapnut, a plant cleanser that lathers on its own."
+          }
+        },
+        "lemon": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "citrus",
+            "name": "Lemon",
+            "text": "Helps lift grease off dishes."
+          }
+        },
+        "lemongrass": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "leaf",
+            "name": "Lemongrass",
+            "text": "Leaves floors smelling fresh."
+          }
+        }
+      },
+      "block_order": [
+        "neem",
+        "tulsi",
+        "aloe_vera",
+        "reetha",
+        "lemon",
+        "lemongrass"
+      ]
+    },
+    "ah_promise": {
+      "type": "ah-label-promise",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "eyebrow": "Our label promise",
+        "heading": "What we say, and what we won't.",
+        "text": "Cleaning products are full of big words. We keep ours to what we can show you.",
+        "say_title": "We say",
+        "wont_say_title": "We won't say"
+      },
+      "blocks": {
+        "say_1": {
+          "type": "say",
+          "settings": {
+            "text": "Made with natural ingredients"
+          }
+        },
+        "say_2": {
+          "type": "say",
+          "settings": {
+            "text": "Every ingredient named on the label"
+          }
+        },
+        "say_3": {
+          "type": "say",
+          "settings": {
+            "text": "Certifications listed here once confirmed"
+          }
+        },
+        "wont_say_1": {
+          "type": "wont_say",
+          "settings": {
+            "text": "\"Chemical-free\". Everything, water included, is a chemical."
+          }
+        },
+        "wont_say_2": {
+          "type": "wont_say",
+          "settings": {
+            "text": "\"100% natural\", unless the formula really is."
+          }
+        },
+        "wont_say_3": {
+          "type": "wont_say",
+          "settings": {
+            "text": "Health claims we have not tested."
+          }
+        }
+      },
+      "block_order": [
+        "say_1",
+        "say_2",
+        "say_3",
+        "wont_say_1",
+        "wont_say_2",
+        "wont_say_3"
+      ]
+    },
+    "ah_cta": {
+      "type": "ah-cta-banner",
+      "settings": {
+        "style": "accent",
+        "show_leaf": false,
+        "is_last": true,
+        "eyebrow": "Start here",
+        "heading": "Try the handwash that started it all.",
+        "text": "Neem & Tulsi Handwash, 250 ml. Free shipping on orders above ₹499.",
+        "button_label": "Shop handwash"
+      }
+    }
+  },
+  "order": [
+    "ah_hero",
+    "ah_origin",
+    "ah_values",
+    "ah_process",
+    "ah_plants",
+    "ah_promise",
+    "ah_cta"
+  ]
+}

@@ -1,0 +1,155 @@
+{%- liquid
+  assign say_items = section.blocks | where: 'type', 'say'
+  assign wont_say_items = section.blocks | where: 'type', 'wont_say'
+-%}
+<section class="ah-root ah-section ah-scheme color-{{ section.settings.color_scheme }} ah-promise"{% if section.settings.heading != blank %} aria-labelledby="ah-promise-heading-{{ section.id }}"{% endif %}>
+  <div class="ah-container">
+    <div class="ah-promise__grid">
+      <div class="ah-promise__intro">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="ah-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="ah-heading ah-heading--section" id="ah-promise-heading-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+          <p class="ah-body">{{ section.settings.text | escape }}</p>
+        {%- endif -%}
+      </div>
+      <div class="ah-promise__cards">
+        {%- if say_items.size > 0 -%}
+          <div class="ah-promise__card ah-promise__card--say">
+            <h3 class="ah-promise__title">{{ section.settings.say_title | escape }}</h3>
+            <ul class="ah-promise__list" role="list">
+              {%- for block in say_items -%}
+                <li class="ah-promise__item" {{ block.shopify_attributes }}>
+                  {%- render 'ah-icon', icon: 'check', class: 'ah-promise__icon ah-promise__icon--say' -%}
+                  <span>{{ block.settings.text | escape }}</span>
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+        {%- if wont_say_items.size > 0 -%}
+          <div class="ah-promise__card ah-promise__card--wont-say">
+            <h3 class="ah-promise__title">{{ section.settings.wont_say_title | escape }}</h3>
+            <ul class="ah-promise__list" role="list">
+              {%- for block in wont_say_items -%}
+                <li class="ah-promise__item" {{ block.shopify_attributes }}>
+                  {%- render 'ah-icon', icon: 'x', class: 'ah-promise__icon' -%}
+                  <span>{{ block.settings.text | escape }}</span>
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .ah-promise__grid { display: flex; flex-wrap: wrap; align-items: flex-start; gap: var(--ah-space-12); }
+  .ah-promise__intro { display: flex; flex: 1 1 360px; flex-direction: column; gap: var(--ah-space-4); min-width: 0; }
+  .ah-promise .ah-promise__intro > * { margin: 0; }
+  .ah-promise__cards { display: grid; flex: 2 1 560px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--ah-space-4); min-width: 0; }
+  .ah-promise__card { display: flex; flex-direction: column; gap: var(--ah-space-4); padding: var(--ah-space-4); border-radius: var(--ah-radius-md); }
+  .ah-promise__card--say { background: var(--ah-leaf-tint); }
+  .ah-promise__card--wont-say { border: 1px solid var(--ah-border); background: var(--ah-surface-100); }
+  .ah-promise__title { margin: 0; font: var(--ah-text-heading-3); letter-spacing: 0; color: var(--ah-ink); }
+  .ah-promise__list { display: flex; flex-direction: column; gap: var(--ah-space-3); margin: 0; padding: 0; list-style: none; }
+  .ah-promise__item { display: flex; align-items: flex-start; gap: var(--ah-space-3); font: var(--ah-text-body); color: var(--ah-ink); }
+  .ah-promise__icon { flex: none; width: 22px; height: 22px; margin-top: 1px; color: var(--ah-ink); }
+  .ah-promise__icon--say { color: var(--ah-brand); }
+
+  @media (min-width: 750px) {
+    .ah-promise__cards { gap: var(--ah-space-6); }
+    .ah-promise__card { padding: var(--ah-space-6); }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "AH Label promise",
+  "tag": "div",
+  "class": "ah-section-label-promise",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Colour scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Our label promise"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What we say, and what we won't."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Cleaning products are full of big words. We keep ours to what we can show you."
+    },
+    {
+      "type": "text",
+      "id": "say_title",
+      "label": "First card title",
+      "default": "We say"
+    },
+    {
+      "type": "text",
+      "id": "wont_say_title",
+      "label": "Second card title",
+      "default": "We won't say"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "say",
+      "name": "We say item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "info": "Only claims you can prove.",
+          "default": "Made with natural ingredients"
+        }
+      ]
+    },
+    {
+      "type": "wont_say",
+      "name": "We won't say item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Health claims we have not tested."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "AH Label promise",
+      "blocks": [
+        { "type": "say", "settings": { "text": "Made with natural ingredients" } },
+        { "type": "say", "settings": { "text": "Every ingredient named on the label" } },
+        { "type": "wont_say", "settings": { "text": "\"Chemical-free\". Everything, water included, is a chemical." } },
+        { "type": "wont_say", "settings": { "text": "\"100% natural\", unless the formula really is." } },
+        { "type": "wont_say", "settings": { "text": "Health claims we have not tested." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

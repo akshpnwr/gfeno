@@ -1,5 +1,8 @@
-<section class="ah-root ah-section ah-value-props"{% if section.settings.label != blank %} aria-label="{{ section.settings.label | escape }}"{% endif %}>
+{%- comment -%} Before the about page build: <section class="ah-root ah-section ah-value-props"{% if section.settings.label != blank %} aria-label="{{ section.settings.label | escape }}"{% endif %}> {%- endcomment -%}
+<section class="ah-root ah-section ah-value-props"{% if section.settings.heading != blank %} aria-labelledby="ah-values-heading-{{ section.id }}"{% elsif section.settings.label != blank %} aria-label="{{ section.settings.label | escape }}"{% endif %}>
   <div class="ah-container">
+    {%- capture heading_id -%}ah-values-heading-{{ section.id }}{%- endcapture -%}
+    {%- render 'ah-section-head', heading: section.settings.heading, heading_id: heading_id -%}
     <ul class="ah-value-props__list" role="list">
       {%- for block in section.blocks -%}
         <li class="ah-value-props__item" {{ block.shopify_attributes }}>
@@ -51,6 +54,12 @@
       "id": "label",
       "label": "Section label for screen readers",
       "default": "Why Amrit Herbals"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "info": "Optional. When set, it labels the section instead of the screen reader label."
     }
   ],
   "blocks": [
@@ -68,6 +77,7 @@
             { "value": "drop", "label": "Drop" },
             { "value": "refresh", "label": "Refill" },
             { "value": "truck", "label": "Delivery" },
+            { "value": "shield-check", "label": "Shield" },
             { "value": "none", "label": "None" }
           ]
         },

@@ -1,6 +1,7 @@
 <section class="ah-root ah-hero" aria-labelledby="ah-hero-heading-{{ section.id }}">
   <div class="ah-container">
-    <div class="ah-hero__panel ah-scheme color-{{ section.settings.color_scheme }}">
+    {%- comment -%} Before the about page build: <div class="ah-hero__panel ah-scheme color-{{ section.settings.color_scheme }}"> {%- endcomment -%}
+    <div class="ah-hero__panel ah-scheme color-{{ section.settings.color_scheme }}{% if section.settings.leaf_position == 'bottom-left' %} ah-hero__panel--leaf-bottom{% endif %}">
       {%- if section.settings.show_leaf -%}
         <svg class="ah-hero__leaf" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="M10 90 C10 40 40 10 90 10 C90 60 60 90 10 90 Z"/></svg>
       {%- endif -%}
@@ -23,7 +24,8 @@
           </div>
         {%- endif -%}
       </div>
-      <div class="ah-hero__media">
+      {%- comment -%} Before the about page build: <div class="ah-hero__media"> {%- endcomment -%}
+      <div class="ah-hero__media ah-hero__media--{{ section.settings.image_ratio }}">
         {%- render 'ah-image',
           image: section.settings.image,
           alt: section.settings.image_alt,
@@ -55,11 +57,14 @@
   .ah-hero__actions { display: flex; flex-direction: column; align-self: stretch; gap: var(--ah-space-3); margin-top: var(--ah-space-2); }
   .ah-hero__media { position: relative; overflow: hidden; aspect-ratio: 20 / 17; border-radius: var(--ah-radius-md); background: var(--ah-surface-100); }
   .ah-hero__media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .ah-hero .ah-hero__media--landscape { aspect-ratio: 5 / 4; }
+  .ah-hero__panel--leaf-bottom .ah-hero__leaf { top: auto; right: auto; bottom: -220px; left: -160px; width: 460px; height: 460px; }
 
   @media (min-width: 750px) {
     .ah-hero { padding-top: var(--ah-space-12); }
     .ah-hero__panel { grid-template-columns: 1.1fr 1fr; gap: var(--ah-space-12); padding: calc(var(--ah-space-4) * 4); }
     .ah-hero__leaf { right: -120px; top: -140px; width: 420px; height: 420px; }
+    .ah-hero__panel--leaf-bottom .ah-hero__leaf { top: auto; right: auto; bottom: -220px; left: -160px; width: 460px; height: 460px; }
     .ah-hero__content { gap: var(--ah-space-6); }
     .ah-hero .ah-hero__heading { font-size: 56px; line-height: 60px; }
     .ah-hero__actions { flex-direction: row; flex-wrap: wrap; align-self: flex-start; margin-top: 0; }
@@ -83,6 +88,16 @@
       "id": "show_leaf",
       "label": "Show leaf motif",
       "default": true
+    },
+    {
+      "type": "select",
+      "id": "leaf_position",
+      "label": "Leaf position",
+      "default": "top-right",
+      "options": [
+        { "value": "top-right", "label": "Top right" },
+        { "value": "bottom-left", "label": "Bottom left" }
+      ]
     },
     {
       "type": "header",
@@ -121,6 +136,16 @@
       "id": "image_alt",
       "label": "Image alt text",
       "info": "Describe the image for screen readers. Leave blank to use the alt text saved with the image."
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image shape",
+      "default": "wide",
+      "options": [
+        { "value": "wide", "label": "Wide (20:17)" },
+        { "value": "landscape", "label": "Landscape (5:4)" }
+      ]
     },
     {
       "type": "header",
