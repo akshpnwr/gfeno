@@ -19,8 +19,8 @@ Before building anything visual, read `design-system/README.md` and the relevant
 ## Commands
 
 ```bash
-shopify theme dev --store <store>.myshopify.com     # local preview with hot reload
-shopify theme pull --store <store>.myshopify.com    # pull latest from the store (overwrites local files: commit first)
+shopify theme dev --store gfeno.myshopify.com     # local preview with hot reload
+shopify theme pull --store gfeno.myshopify.com    # pull latest from the store (overwrites local files: commit first)
 shopify theme push --unpublished                    # push as a new unpublished theme for review
 shopify theme check                                 # lint Liquid
 ```

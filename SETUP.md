@@ -3,7 +3,7 @@
 1. Pull Dawn from your store into an empty folder and start git:
 
    ```bash
-   shopify theme pull --store <store>.myshopify.com
+   shopify theme pull --store gfeno.myshopify.com
    git init && git add -A && git commit -m "Dawn baseline"
    ```
 
