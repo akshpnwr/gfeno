@@ -27,6 +27,14 @@ Wrap the section in `.ah-iwt` (in the theme the section root carries it, on a `s
 - Buttons: up to two, each with a style choice (primary or outline). Full width on mobile, natural width from 750px.
 - Columns: `space-8` gap on mobile, `space-12` from 750px; no padding of its own (the section and container provide it).
 
+## Plain variant (About page)
+
+The `.ah-iwt` layout on a white section instead of a band. Add `.ah-iwt--plain` and leave out `ah-section--band`, so the section only has space above.
+
+- Image frame: `surface-200`, so it shows against the white section.
+- `.ah-body` can repeat for a second paragraph.
+- `.ah-iwt__byline` (optional): 16/24 weight 700 in `ink`, for the name of the person telling the story.
+
 ## Layout
 
 Stacks below 750px (Shopify's tablet breakpoint), image first. Above it, two equal columns with `space-12` gap.
@@ -40,3 +48,5 @@ Image (at least 1000 × 1250px, natural light, real ingredients in frame), alt t
 Build as a section (`sections/image-with-text.liquid`) with settings for image, eyebrow, heading, text, tags (comma-separated text), button labels and links, and a "Image on right" checkbox that adds `ah-image-text--reverse`.
 
 Built as `sections/ah-image-with-text.liquid` (home page variant), adding a colour scheme setting, the image shape option, a style select per button and one block per ingredient card.
+
+Added for the About page: "Spaced as a colour band" (on by default; off gives the plain variant), an optional second paragraph (`text_2`) and an optional byline (`byline`).

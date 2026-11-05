@@ -40,6 +40,12 @@ Line icons, 2px stroke, rounded caps, 24px grid, coloured `ink` (or `brand` when
 
 In use on the storefront (Lucide names, theme key in brackets): `leaf` (leaf), `droplet` (drop), `citrus` (citrus), `refresh-cw` (refresh), `truck` (truck), `arrow-right` (arrow-right), and `star` for ratings, which is the one filled icon (`brand` fill, `ink-muted` outline when empty). Sizes as built: 16px in ingredient chips, 20px beside category labels, 22px inside the 48px value-prop circle. In the theme they come from `snippets/ah-icon.liquid`; add new icons there from Lucide rather than drawing them.
 
+Also in use since the About page: `shield-check` (shield-check), `check` (check), `x` (x). `citrus` also stands for lemon. Sizes as built: 22px inside the 48px ingredient circle and beside label promise items.
+
+## Header
+
+The current menu item is `brand`, weight 700, with a 2px underline at a 6px offset. In the theme this is a Dawn override in `assets/amrit-components.css` (`.header__active-menu-item`).
+
 ## Logo
 
 A temporary logo is in the Logos group (`placeholder-logo.png`, 426 × 419 PNG). It reads "G-Feno Cleanz", not "Amrit Herbals", and is in use only until the final mark is supplied.

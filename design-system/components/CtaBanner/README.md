@@ -23,6 +23,7 @@ A shorter band for the end of a page, where the heading and button sit on one ro
 - `.ah-heading`: `heading-1` size (30/36 on mobile, 40/46 from 750px, `ah-heading--section`) at weight 800, with no 16ch cap. `.ah-body` has no width cap either.
 - Content (eyebrow, heading, text) stacks with a `space-3` gap; `.ah-cta__content` wraps it.
 - Button: full width below the text on mobile; on desktop the band becomes a row with the button right-aligned and vertically centred (wraps under the text when space runs out).
+  The button stays full width on mobile on the About page too, by owner decision, although the About design showed it at natural width.
 - Padding: `space-8` × `space-6` on mobile, 64px all round on desktop. No outer margin; the band sits in `ah-container` inside an `ah-section`.
 - Leaf motif: optional and **off by default** (a "Show leaf motif" setting).
 
@@ -39,3 +40,5 @@ Eyebrow, heading, one sentence, button label and link. Offer banners should incl
 Build as `sections/cta-banner.liquid` with a select setting for colour (`accent` / `offer`) that toggles `ah-banner--offer`.
 
 Built as `sections/ah-cta-banner.liquid` (the theme prefixes custom sections with `ah-`). It renders the compact variant, with settings for style (lime / offer), leaf motif, eyebrow, heading, text, button label and link.
+
+Added for the About page: "Last section on the page" (`is_last`, off by default) adds `ah-section--end`, which gives the space between the banner and the footer.

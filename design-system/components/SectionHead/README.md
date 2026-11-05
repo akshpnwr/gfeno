@@ -24,4 +24,5 @@ Heading text; optionally eyebrow text, link label and link URL (both needed for 
 
 ## Shopify
 
-`snippets/ah-section-head.liquid`, rendered by `ah-category-grid`, `ah-featured-products` and `ah-testimonials` with `heading`, `eyebrow`, `link_label`, `link_url` and `heading_id` (for the section's `aria-labelledby`).
+<!-- Before the about page build: `snippets/ah-section-head.liquid`, rendered by `ah-category-grid`, `ah-featured-products` and `ah-testimonials` with `heading`, `eyebrow`, `link_label`, `link_url` and `heading_id` (for the section's `aria-labelledby`). -->
+`snippets/ah-section-head.liquid`, rendered by `ah-category-grid`, `ah-featured-products`, `ah-testimonials`, `ah-value-props`, `ah-process-steps` and `ah-ingredient-grid` with `heading`, `eyebrow`, `link_label`, `link_url` and `heading_id` (for the section's `aria-labelledby`).

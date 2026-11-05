@@ -5,6 +5,7 @@ A row of short reasons to buy, each a hairline card with an icon in a `leaf-tint
 ## When to use
 
 - Home page, after the product story, to answer "why this brand": ingredients, refills, delivery.
+- About page, under a visible heading, to state what the brand stands for.
 - Three or four cards. Each states one concrete, provable fact ("Free shipping above ₹499"), not a slogan.
 
 ## Anatomy
@@ -18,10 +19,14 @@ A row of short reasons to buy, each a hairline card with an icon in a `leaf-tint
 
 Mobile: cards stack with a `space-4` gap; inside each, the icon sits beside the title (`space-3` gap) and the text runs full width below. From 750px: as many columns of at least 220px as fit, `space-6` gap, and the icon sits above the title (`space-3` stack).
 
+With a heading, a SectionHead sits above the cards. The icon stays beside the title on mobile on both pages, by owner decision, although the About design showed it above.
+
 ## What the consumer provides
 
 Per card: icon choice (or none), title of a few words, one sentence. A section label for screen readers (e.g. "Why Amrit Herbals").
+Optionally, a visible heading, which replaces the screen reader label.
 
 ## Shopify
 
-`sections/ah-value-props.liquid`, one block per card (icon select, title, text). The section is labelled with `aria-label` from its label setting.
+<!-- Before the about page build: `sections/ah-value-props.liquid`, one block per card (icon select, title, text). The section is labelled with `aria-label` from its label setting. -->
+`sections/ah-value-props.liquid`, one block per card (icon select, including a shield option, title, text). With the optional heading setting, the section renders SectionHead and is labelled by that heading (`aria-labelledby`). Without it, the section is labelled with `aria-label` from its label setting.

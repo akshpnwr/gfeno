@@ -428,3 +428,60 @@ a.ah-ingredient-strip__chip:hover { text-decoration: underline; text-underline-o
   .ah-newsletter__form { flex-direction: row; flex-wrap: wrap; align-items: flex-end; }
   .ah-newsletter__field { flex: 1 1 260px; }
 }
+
+/* ==========================================================================
+   Added from the About page build (theme commit d440df0).
+   Source: the sections' {% stylesheet %} blocks.
+   ========================================================================== */
+
+/* ---------- Hero, leaf and image options (sections/ah-hero.liquid) ---------- */
+.ah-hero .ah-hero__media--landscape { aspect-ratio: 5 / 4; }
+.ah-hero__panel--leaf-bottom .ah-hero__leaf { top: auto; right: auto; bottom: -220px; left: -160px; width: 460px; height: 460px; }
+
+/* ---------- Image with text, plain variant (sections/ah-image-with-text.liquid) ---------- */
+.ah-iwt--plain .ah-iwt__media.ah-media { background: var(--surface-200); }
+.ah-iwt__byline { font: 700 16px/24px var(--font-sans); color: var(--ink); }
+
+/* ---------- Process steps (sections/ah-process-steps.liquid) ---------- */
+.ah-steps__list { display: grid; grid-template-columns: 1fr; gap: var(--space-4); margin: 0; padding: 0; list-style: none; }
+.ah-steps__item { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-4); border-radius: var(--radius-md); background: var(--surface-100); }
+.ah-steps__number { display: grid; place-items: center; width: 48px; height: 48px; border-radius: var(--radius-pill); background: var(--brand); color: var(--surface-100); font: 800 20px/28px var(--font-sans); }
+.ah-steps__title { margin: 0; font: 700 20px/28px var(--font-sans); letter-spacing: 0; color: var(--ink); }
+.ah-steps__text { margin: 0; font: 400 16px/24px var(--font-sans); color: var(--ink-muted); }
+
+@media (min-width: 750px) {
+  .ah-steps__list { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-6); }
+  .ah-steps__item { padding: var(--space-6); }
+}
+
+/* ---------- Ingredient grid (sections/ah-ingredient-grid.liquid) ---------- */
+.ah-plants__list { display: grid; grid-template-columns: 1fr; gap: var(--space-4); margin: 0; padding: 0; list-style: none; }
+.ah-plants__item { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-4); border-radius: var(--radius-md); background: var(--surface-200); }
+.ah-plants__icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: var(--radius-pill); background: var(--leaf-tint); color: var(--brand); }
+.ah-plants__icon svg { width: 22px; height: 22px; }
+.ah-plants__name { margin: 0; font: 700 20px/28px var(--font-sans); letter-spacing: 0; color: var(--ink); }
+.ah-plants__text { margin: 0; font: 500 14px/20px var(--font-sans); color: var(--ink-muted); }
+
+@media (min-width: 750px) {
+  .ah-plants__list { grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+  .ah-plants__item { padding: var(--space-6); }
+}
+
+/* ---------- Label promise (sections/ah-label-promise.liquid) ---------- */
+.ah-promise__grid { display: flex; flex-wrap: wrap; align-items: flex-start; gap: var(--space-12); }
+.ah-promise__intro { display: flex; flex: 1 1 360px; flex-direction: column; gap: var(--space-4); min-width: 0; }
+.ah-promise .ah-promise__intro > * { margin: 0; }
+.ah-promise__cards { display: grid; flex: 2 1 560px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-4); min-width: 0; }
+.ah-promise__card { display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-4); border-radius: var(--radius-md); }
+.ah-promise__card--say { background: var(--leaf-tint); }
+.ah-promise__card--wont-say { border: 1px solid var(--border); background: var(--surface-100); }
+.ah-promise__title { margin: 0; font: 700 20px/28px var(--font-sans); letter-spacing: 0; color: var(--ink); }
+.ah-promise__list { display: flex; flex-direction: column; gap: var(--space-3); margin: 0; padding: 0; list-style: none; }
+.ah-promise__item { display: flex; align-items: flex-start; gap: var(--space-3); font: 400 16px/24px var(--font-sans); color: var(--ink); }
+.ah-promise__icon { flex: none; width: 22px; height: 22px; margin-top: 1px; color: var(--ink); }
+.ah-promise__icon--say { color: var(--brand); }
+
+@media (min-width: 750px) {
+  .ah-promise__cards { gap: var(--space-6); }
+  .ah-promise__card { padding: var(--space-6); }
+}
